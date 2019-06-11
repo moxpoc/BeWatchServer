@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/beatHeart")
+@RequestMapping("/beatheart")
 public class BeatHeartController {
 
     @Autowired

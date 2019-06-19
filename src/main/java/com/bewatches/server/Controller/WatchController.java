@@ -28,13 +28,13 @@ public class WatchController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public Watch updateWatch(@RequestBody Watch watch){
+    public void updateWatch(@RequestBody Watch watch){
         Watch watchOld = watchService.getByImei(watch.getImei());
         watchOld.setDeviceMobileNo(watch.getDeviceMobileNo());
         watchOld.setName(watch.getName());
         watchOld.setOwnerBirthday(watch.getOwnerBirthday());
         watchOld.setOwnerGender(watch.getOwnerGender());
-        return watchService.save(watchOld);
+        watchService.save(watchOld);
     }
 
 }

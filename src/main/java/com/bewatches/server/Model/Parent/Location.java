@@ -2,6 +2,8 @@ package com.bewatches.server.Model.Parent;
 
 
 
+import com.bewatches.server.Model.App.Watch;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -11,14 +13,13 @@ public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @NotBlank
     private String imei;
-    @NotBlank
     private String type;
-    @NotBlank
     private String lat;
-    @NotBlank
     private String lon;
+
+    @OneToOne(optional = false, mappedBy = "location")
+    private Watch watch;
 
     public Location(){
 
@@ -69,5 +70,13 @@ public class Location {
 
     public void setLon(String lon) {
         this.lon = lon;
+    }
+
+    public Watch getWatch() {
+        return watch;
+    }
+
+    public void setWatch(Watch watch) {
+        this.watch = watch;
     }
 }

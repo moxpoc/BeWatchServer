@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "beatheart")
+@Table(name = "beatheart")//пульс
 public class BeatHeart {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

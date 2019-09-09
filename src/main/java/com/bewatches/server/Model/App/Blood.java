@@ -1,5 +1,7 @@
 package com.bewatches.server.Model.App;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,10 +14,17 @@ public class Blood {
 
      private String imei;
 
+     private int heartrate;
+
      private int dbp;
 
      private int sbp;
 
+     private String oxygen;
+
+     private String sugar;
+
+     @JsonIgnore
      @OneToOne(mappedBy = "blood")
      private Watch watch;
 
@@ -24,7 +33,7 @@ public class Blood {
 
      }
 
-     public Blood(String imei, int dbp, int sbp){
+     public Blood(String imei, int heartrate, int dbp, int sbp){
          this.imei = imei;
          this.dbp = dbp;
          this.sbp =sbp;
@@ -46,6 +55,14 @@ public class Blood {
         this.imei = imei;
     }
 
+    public int getHeartrate() {
+        return heartrate;
+    }
+
+    public void setHeartrate(int heartrate) {
+        this.heartrate = heartrate;
+    }
+
     public int getDbp() {
         return dbp;
     }
@@ -60,6 +77,22 @@ public class Blood {
 
     public void setSbp(int sbp) {
         this.sbp = sbp;
+    }
+
+    public String getOxygen() {
+        return oxygen;
+    }
+
+    public void setOxygen(String oxygen) {
+        this.oxygen = oxygen;
+    }
+
+    public String getSugar() {
+        return sugar;
+    }
+
+    public void setSugar(String sugar) {
+        this.sugar = sugar;
     }
 
     public Watch getWatch() {

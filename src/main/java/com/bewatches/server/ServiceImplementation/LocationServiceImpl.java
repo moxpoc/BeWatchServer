@@ -16,4 +16,13 @@ public class LocationServiceImpl implements LocationService {
     public Location save(Location location) {
         return locationRepository.saveAndFlush(location);
     }
+
+    public Location getByImei(String imei){
+        return locationRepository.getByImei(imei);
+    }
+
+    @Override
+    public Location updateLocation(Location location) {
+        return locationRepository.saveAndFlush(location);
+    }
 }

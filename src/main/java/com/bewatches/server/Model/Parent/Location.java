@@ -3,6 +3,7 @@ package com.bewatches.server.Model.Parent;
 
 
 import com.bewatches.server.Model.App.Watch;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -18,6 +19,7 @@ public class Location {
     private String lat;
     private String lon;
 
+    @JsonIgnore
     @OneToOne(optional = false, mappedBy = "location")
     private Watch watch;
 

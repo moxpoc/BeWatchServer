@@ -1,6 +1,7 @@
 package com.bewatches.server.Model.App;
 
 import com.bewatches.server.Model.Client;
+import com.bewatches.server.Model.Parent.BeatHeart;
 import com.bewatches.server.Model.Parent.Location;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,18 +20,29 @@ public class Watch {
     private String imei;
     @NotBlank
     private String name;
+    @Column(name = "bp_correction_high")
     private int bpCorrectionHigh;
+    @Column(name = "bp_correction_low")
     private int bpCorrectionLow;
+    @Column(name = "bp_threshold_high")
     private int bpThresholdHigh;
+    @Column(name = "bp_threshold_low")
     private int bpThresholdLow;
+    @Column(name = "device_mobile_no")
     private String deviceMobileNo;
+    @Column(name = "falling_alarm")
     private String fallingAlarm;
     private int height;
     private int weight;
+    @Column(name = "hrm_treshold_high")
     private int hrmTresholdHigh;
+    @Column(name = "hrm_treshold_low")
     private int hrmTresholdLow;
+    @Column(name = "owner_birthday")
     private String ownerBirthday;
+    @Column(name = "owner_blood_type")
     private String ownerBloodType;
+    @Column(name = "owner_gender")
     private String ownerGender;
     private String restricted;
 
@@ -45,6 +57,10 @@ public class Watch {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "blood_id")
     private Blood blood;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "beatheart_id")
+    private BeatHeart beatheart;
 
     public Watch(){
 
@@ -234,5 +250,13 @@ public class Watch {
 
     public void setBlood(Blood blood) {
         this.blood = blood;
+    }
+
+    public BeatHeart getBeatHeart() {
+        return beatheart;
+    }
+
+    public void setBeatHeart(BeatHeart beatHeart) {
+        this.beatheart = beatHeart;
     }
 }

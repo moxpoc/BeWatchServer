@@ -77,8 +77,8 @@
       <Comment>standard public schema</Comment>
       <StateNumber>562</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionTimestamp>2019-06-19.15:17:50.848</IntrospectionTimestamp>
-      <IntrospectionStateNumber>1021</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2019-07-09.14:34:15.725</IntrospectionTimestamp>
+      <IntrospectionStateNumber>1046</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -116,9 +116,9 @@
       <SchemaId>11</SchemaId>
     </extension>
     <sequence id="20" parent="13" name="hibernate_sequence">
-      <ObjectId>32980</ObjectId>
+      <ObjectId>41181</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>982</StateNumber>
+      <StateNumber>1041</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <CacheSize>1</CacheSize>
     </sequence>
@@ -612,8 +612,7 @@
     <column id="98" parent="29" name="location_id">
       <Position>19</Position>
       <DataType>bigint|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>1014</StateNumber>
+      <StateNumber>1046</StateNumber>
       <TypeId>20</TypeId>
     </column>
     <column id="99" parent="29" name="blood_id">

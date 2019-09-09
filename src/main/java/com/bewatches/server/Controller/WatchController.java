@@ -2,6 +2,9 @@ package com.bewatches.server.Controller;
 
 import com.bewatches.server.Model.App.Watch;
 import com.bewatches.server.Service.WatchService;
+import com.velesov84.serverh10.NodeH10;
+import com.velesov84.serverh10.protocol.PduBP33;
+import com.velesov84.serverh10.protocol.ProtocolManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +25,13 @@ public class WatchController {
         return watchService.getByImei(imei);
     }
 
+    @RequestMapping(value = "mode/{imei}", method = RequestMethod.GET)
+    public void sendMode(@PathVariable("imei") String imei){
+        NodeH10 modeNode = new NodeH10();
+        PduBP33 pduBP33 = (PduBP33) ProtocolManager.buildDataUnit(imei, "BP33");
+        pduBP33.setWorkingMode(PduBP33.EMERGENCY_MODE);
+        modeNode.postPDU(pduBP33);
+    }
     @RequestMapping(method = RequestMethod.DELETE)
     public void deleteWatchByImei(@RequestBody String imei){
         watchService.deleteByImei(imei);
@@ -34,6 +44,8 @@ public class WatchController {
         watchOld.setName(watch.getName());
         watchOld.setOwnerBirthday(watch.getOwnerBirthday());
         watchOld.setOwnerGender(watch.getOwnerGender());
+        watchOld.setHeight(watch.getHeight());
+        watchOld.setWeight(watch.getWeight());
         watchService.save(watchOld);
     }
 

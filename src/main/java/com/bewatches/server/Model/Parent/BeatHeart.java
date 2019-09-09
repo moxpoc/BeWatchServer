@@ -1,5 +1,7 @@
 package com.bewatches.server.Model.Parent;
 
+import com.bewatches.server.Model.App.Watch;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
@@ -14,10 +16,14 @@ public class BeatHeart {
     private Long id;
     @NotBlank
     private String imei;
-    @NotNull
+
     private int battery;
-    @NotNull
+
     private int pedometer;
+
+    @JsonIgnore
+    @OneToOne(optional = false, mappedBy = "beatheart")
+    private Watch watch;
 
     public BeatHeart(){
 
@@ -58,5 +64,13 @@ public class BeatHeart {
 
     public void setPedometer(int pedometer) {
         this.pedometer = pedometer;
+    }
+
+    public Watch getWatch() {
+        return watch;
+    }
+
+    public void setWatch(Watch watch) {
+        this.watch = watch;
     }
 }

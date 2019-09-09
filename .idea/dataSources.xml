@@ -7,5 +7,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/beparent</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="BusinessEngine - beparent@10.200.2.5" uuid="45bb8c06-6374-45ea-b1c8-db3e0e131573">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://10.200.2.5:5432/beparent</jdbc-url>
+    </data-source>
   </component>
 </project>

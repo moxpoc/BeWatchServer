@@ -15,4 +15,9 @@ public class BeatHeartServiceImpl implements BeatHeartService {
     public BeatHeart save(BeatHeart beatHeart){
         return beatHeartRepository.saveAndFlush(beatHeart);
     }
+
+
+    public BeatHeart getBeatheartByImei(String imei) {
+        return beatHeartRepository.getBeatHeartByImei(imei);
+    }
 }

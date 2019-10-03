@@ -9,6 +9,7 @@ import java.util.List;
 public interface WatchRepository extends JpaRepository<Watch, Long> {
     List<Watch> getAllByClient(Client client);
     Watch getByImei(String imei);
+    Watch getWatchByClient(Client client);
     void deleteByImei(String imei);
 
 }

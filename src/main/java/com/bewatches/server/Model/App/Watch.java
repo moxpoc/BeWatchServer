@@ -46,6 +46,7 @@ public class Watch {
     private String ownerGender;
     private String restricted;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "client_id")
     private Client client;

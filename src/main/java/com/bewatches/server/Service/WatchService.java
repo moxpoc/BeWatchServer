@@ -9,6 +9,7 @@ public interface WatchService {
 
     List<Watch> getAllByClient(Client client);
     Watch getByImei(String imei);
+    Watch getWatchByClient(Client client);
     Watch save(Watch watch);
     void deleteByImei(String imei);
 

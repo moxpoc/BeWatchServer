@@ -23,6 +23,11 @@ public class WatchServiceImpl implements WatchService {
         return watchRepository.getByImei(imei);
     }
 
+    @Override
+    public Watch getWatchByClient(Client client) {
+        return watchRepository.getWatchByClient(client);
+    }
+
     public Watch save(Watch watch){
         return watchRepository.saveAndFlush(watch);
     }

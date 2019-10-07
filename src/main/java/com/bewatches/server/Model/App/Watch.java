@@ -9,8 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 
-@Entity
-@Table(name = "watch")
+@Entity(name = "watch")
 public class Watch {
 
     @Id

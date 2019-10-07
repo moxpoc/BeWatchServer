@@ -54,7 +54,8 @@ public class WatchController {
     }
 
     @RequestMapping(method = RequestMethod.PUT)
-    public void updateWatch(@RequestBody Watch watch){
+    public void updateWatch(@RequestBody Watch watch, @RequestHeader(value = "Authorization") String token){
+
         Watch watchOld = watchService.getByImei(watch.getImei());
         watchOld.setDeviceMobileNo(watch.getDeviceMobileNo());
         watchOld.setName(watch.getName());
@@ -62,6 +63,7 @@ public class WatchController {
         watchOld.setOwnerGender(watch.getOwnerGender());
         watchOld.setHeight(watch.getHeight());
         watchOld.setWeight(watch.getWeight());
+        watchOld.setClient(clientService.findByLogin(jwtTokenProvider.getUsername(token.substring(7))));
         watchService.save(watchOld);
     }
 

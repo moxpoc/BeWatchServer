@@ -68,6 +68,11 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public Client save(Client client) {
+        return clientRepository.saveAndFlush(client);
+    }
+
+    @Override
     public void delete(Long id) {
         clientRepository.deleteById(id);
     }

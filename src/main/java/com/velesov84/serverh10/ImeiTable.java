@@ -49,7 +49,7 @@ class ImeiTable {
     {
         String result = "";
         for (ImeiTableEntry e : table) {
-            if (e.IP.equals(ip)) { result = e.IMEI; break; }
+            if (e.IP.equals(ip)) { result = e.IMEI.substring(0,15); break; }
         }        
         return result;
     }

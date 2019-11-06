@@ -81,7 +81,7 @@ class NodeWorker extends Thread {
         }
         addr = new ImeiTableEntry();
         addr.IP = s.getRemoteSocketAddress().toString();
-        addr.IMEI = imeiTable.getImeiByIP(addr.IP);        
+        addr.IMEI = imeiTable.getImeiByIP(addr.IP).substring(0,15);
         
         setDaemon(false);
         setPriority(NORM_PRIORITY);        
@@ -133,7 +133,7 @@ class NodeWorker extends Thread {
                 em.getTransaction().begin();
                 Long tryWatch = 0L;
                 try {
-                    tryWatch = (Long)em.createQuery("SELECT count(imei) FROM Watch WHERE imei = :watchImei")
+                    tryWatch = (Long)em.createQuery("SELECT count(imei) FROM watch WHERE imei = :watchImei")
                             .setParameter("watchImei", addr.IMEI).getSingleResult();
                     System.out.println("LOGIN QUERY ======= " + tryWatch);
                 } catch(NoResultException e){
@@ -255,13 +255,13 @@ class NodeWorker extends Thread {
                 emHP.getTransaction().begin();
                 Long ress = 0L;
                 try {
-                    ress = (Long) emHP.createQuery("SELECT count(imei) FROM Blood WHERE imei = :bloodImei")
+                    ress = (Long) emHP.createQuery("SELECT count(imei) FROM blood WHERE imei = :bloodImei")
                             .setParameter("bloodImei", addr.IMEI).getSingleResult();
                 } catch (NoResultException nre){
 
                 }
                 if(!ress.equals(0L)){
-                    emHP.createQuery("UPDATE Blood SET oxygen =:oxygen,sugar =:sugar WHERE imei = :bloodImei")
+                    emHP.createQuery("UPDATE blood SET oxygen =:oxygen,sugar =:sugar WHERE imei = :bloodImei")
                             .setParameter("oxygen", apHP.getSaO2())
                             .setParameter("sugar", apHP.getBloodSugar())
                             .setParameter("bloodImei", addr.IMEI).executeUpdate();
@@ -278,13 +278,13 @@ class NodeWorker extends Thread {
                 emHT.getTransaction().begin();
                 Long ress = 0L;
                 try {
-                    ress = (Long)emHT.createQuery("SELECT count(imei) FROM Blood WHERE imei = :bloodImei")
+                    ress = (Long)emHT.createQuery("SELECT count(imei) FROM blood WHERE imei = :bloodImei")
                             .setParameter("bloodImei", addr.IMEI).getSingleResult();
                 } catch (NoResultException nre){
 
                 }
                 if(!ress.equals(0L)){
-                    emHT.createQuery("UPDATE Blood SET heartrate = :heartrate, dbp = :dbp, sbp = :sbp WHERE imei = :bloodImei")
+                    emHT.createQuery("UPDATE blood SET heartrate = :heartrate, dbp = :dbp, sbp = :sbp WHERE imei = :bloodImei")
                             .setParameter("heartrate", apHT.getHeartRate())
                             .setParameter("dbp", apHT.getDiastolicPressure())
                             .setParameter("sbp", apHT.getSystolicPressure())

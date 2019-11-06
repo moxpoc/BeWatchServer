@@ -17,7 +17,6 @@ public class Watch {
     private long id;
     @NotBlank
     private String imei;
-    @NotBlank
     private String name;
     @Column(name = "bp_correction_high")
     private int bpCorrectionHigh;

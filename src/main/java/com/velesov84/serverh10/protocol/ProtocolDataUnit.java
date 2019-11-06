@@ -76,7 +76,7 @@ public class ProtocolDataUnit implements Comparable<ProtocolDataUnit> {
     
     public String getIMEI()
     {
-        return IMEI;
+        return IMEI.substring(0,15);
     }
     
     public String getCommandID()

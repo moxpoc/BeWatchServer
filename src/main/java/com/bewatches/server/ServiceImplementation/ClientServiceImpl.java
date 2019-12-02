@@ -1,5 +1,6 @@
 package com.bewatches.server.ServiceImplementation;
 
+import com.bewatches.server.Model.App.Watch;
 import com.bewatches.server.Model.Client;
 import com.bewatches.server.Model.Role;
 import com.bewatches.server.Repository.ClientRepository;
@@ -64,6 +65,12 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Client findByEmail(String email) {
         Client client = clientRepository.findByEmail(email);
+        return client;
+    }
+
+    @Override
+    public Client findByWatch(Watch watch){
+        Client client = clientRepository.findByWatches(watch);
         return client;
     }
 

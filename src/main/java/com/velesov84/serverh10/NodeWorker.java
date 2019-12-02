@@ -81,7 +81,11 @@ class NodeWorker extends Thread {
         }
         addr = new ImeiTableEntry();
         addr.IP = s.getRemoteSocketAddress().toString();
-        addr.IMEI = imeiTable.getImeiByIP(addr.IP).substring(0,15);
+        try {
+            addr.IMEI = imeiTable.getImeiByIP(addr.IP).substring(0, 15);
+        }catch (Exception e){
+            System.out.println("IMEI IS INVALID");
+        }
         
         setDaemon(false);
         setPriority(NORM_PRIORITY);        
@@ -113,7 +117,7 @@ class NodeWorker extends Thread {
             case "AP00": { 
                 // >>Есть IMEI                
                 PduAP00 inObj = (PduAP00) inPDU;                
-                addr.IMEI = inObj.getIMEI();
+                addr.IMEI = inObj.getIMEI().substring(0,15);
                 imeiTable.modifyIpByImei(addr);
                 infoLog.info(">> IP "+addr.IP+" представился как IMEI "+addr.IMEI);                
                 PduBP00 result = (PduBP00) ProtocolManager.buildDataUnit(addr.IMEI, "BP00");
@@ -241,8 +245,13 @@ class NodeWorker extends Thread {
                 return result;
             }
             case "AP10": {
-                PduBP10 result = (PduBP10) ProtocolManager.buildDataUnit(addr.IMEI,"BP10");                            
-                return result;                
+                PduBP10 result = (PduBP10) ProtocolManager.buildDataUnit(addr.IMEI,"BP10");
+                PduAP10 ap10 = (PduAP10) inPDU;
+                int alarmState = ap10.getAlarmState();
+                if (alarmState == 6){
+
+                }
+                    return result;
             }
             case "AP49": {
                ProtocolDataUnit result = ProtocolManager.buildDataUnit(addr.IMEI,"BP49");                       

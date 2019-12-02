@@ -24,6 +24,8 @@ public class Client {
     @NotBlank
     private String email;
 
+    private String appToken;
+
     @JsonIgnore
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Watch> watches;
@@ -39,10 +41,11 @@ public class Client {
 
     }
 
-    public Client (String login, String email, String password){
+    public Client (String login, String email, String password, String appToken){
         this.login = login;
         this.email = email;
         this.password = password;
+        this.appToken = appToken;
     }
 
     public Long getId() {
@@ -91,5 +94,13 @@ public class Client {
 
     public void setWatches(Set<Watch> watches) {
         this.watches = watches;
+    }
+
+    public String getAppToken() {
+        return appToken;
+    }
+
+    public void setAppToken(String appToken) {
+        this.appToken = appToken;
     }
 }

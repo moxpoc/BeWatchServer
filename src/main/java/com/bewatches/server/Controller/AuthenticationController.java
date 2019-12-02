@@ -59,6 +59,9 @@ public class AuthenticationController {
             response.put("login", login);
             response.put("token", token);
 
+            client.setAppToken(authRequestDto.getAppToken());
+            clientService.save(client);
+
             return ResponseEntity.ok(response);
         }catch (AuthenticationException e){
             throw new BadCredentialsException("Invalid login or password");

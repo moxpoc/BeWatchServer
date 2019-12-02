@@ -71,7 +71,7 @@ public class ProtocolDataUnit implements Comparable<ProtocolDataUnit> {
     
     public void setIMEI(String Value)
     {
-        IMEI = Value;
+        IMEI = Value.substring(0,15);
     }
     
     public String getIMEI()
